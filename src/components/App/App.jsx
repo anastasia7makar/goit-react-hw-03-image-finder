@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import { fetchGallery } from '../../services/getImages';
 import css from '../App/App.module.css';
 import Seachbar from '../Searchbar/Searchbar';
