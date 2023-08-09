@@ -21,7 +21,9 @@ export class App extends Component {
 
   componentDidUpdate(_, prevState) {
     const query = prevState.searchText !== this.state.searchText;
-    const page = prevState.galleryPage !== this.state.galleryPage;
+    const page =
+      prevState.galleryPage !== this.state.galleryPage &&
+      this.state.galleryPage !== 1;
 
     if (query || page) {
       this.fetchGalleryItems(
@@ -33,7 +35,12 @@ export class App extends Component {
   }
 
   fetchGalleryItems = (query, page, isClearHits = false) => {
-    if (isClearHits) this.setState({ galleryItems: [] });
+    if (isClearHits)
+      this.setState({
+        galleryItems: [],
+        currentQuantity: initialState.currentQuantity,
+        galleryPage: initialState.galleryPage,
+      });
 
     this.setState({ loading: true, isButtonShow: false });
 
