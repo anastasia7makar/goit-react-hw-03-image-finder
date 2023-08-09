@@ -1,5 +1,7 @@
+import PropTypes from 'prop-types';
 import { Component } from 'react';
-import css from '../Searchbar/Searchbar.module.css'
+import css from '../Searchbar/Searchbar.module.css';
+import { Notify } from 'notiflix';
 
 class Searchbar extends Component {
   state = {
@@ -7,12 +9,21 @@ class Searchbar extends Component {
   };
 
   handleChange = ({ target: { value } }) => {
-    this.setState({ value });
+    this.setState({ value: value.toLowerCase().trim() });
   };
 
   handleSubmit = e => {
+    const query = this.state.value;
+
     e.preventDefault();
-    this.props.handleSearch(this.state.value);
+
+    if (query === '') {
+      return Notify.info('Please, enter search word!');
+    }
+
+    this.props.handleSearch(query);
+
+    this.setState({ query: '' });
   };
 
   render() {
@@ -37,5 +48,9 @@ class Searchbar extends Component {
     );
   }
 }
+
+Searchbar.propTypes = {
+  handleSearch: PropTypes.func.isRequired,
+};
 
 export default Searchbar;
