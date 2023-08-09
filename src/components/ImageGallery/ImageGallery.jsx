@@ -4,11 +4,9 @@ import css from '../ImageGallery/ImageGallery.module.css';
 
 const ImageGallery = ({ galleryItems = [] }) => (
   <ul className={css.gallery}>
-    {galleryItems.length <= 0
-      ? 'Type text'
-      : galleryItems.map(galleryItem => {
-          return <ImageGalleryItem key={galleryItem.id} {...galleryItem} />;
-        })}
+    {galleryItems.map(galleryItem => {
+      return <ImageGalleryItem key={galleryItem.id} {...galleryItem} />;
+    })}
   </ul>
 );
 
