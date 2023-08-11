@@ -92,7 +92,9 @@ export class App extends Component {
     return (
       <div className={css.app}>
         <Seachbar handleSearch={this.handleSearch} />
-        <ImageGallery galleryItems={galleryItems} />
+        {galleryItems.length > 0 && (
+          <ImageGallery galleryItems={galleryItems} />
+        )}
         {loading && <Loader />}
         {isButtonShow && <Button handleClick={this.onLoadMore} />}
       </div>
